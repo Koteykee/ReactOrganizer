@@ -1,0 +1,30 @@
+.search-bar {
+  width: 100%;
+  font-size: 24px;
+  padding: 6px;
+  border-radius: 6px;
+  margin: 10px;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.city-container {
+  margin: 0px 10px 10px 10px;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.city {
+  background-color: rgba(24, 134, 121, 0.7);
+  padding: 10px;
+  list-style: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.error {
+  font-size: 24px;
+}

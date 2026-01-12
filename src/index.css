@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arapey", serif;
+}
+
+body {
+  background-color: rgb(119, 187, 149);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

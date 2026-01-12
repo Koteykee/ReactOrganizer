@@ -1,0 +1,111 @@
+.container {
+  font-size: 36px;
+  margin: 10px;
+}
+
+.wrapper {
+  display: flex;
+  height: 70vh;
+  position: relative;
+}
+
+.work,
+.break {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.5s ease;
+}
+
+.work:hover {
+  width: 70%;
+}
+
+.break:hover {
+  width: 70%;
+}
+
+.work {
+  background-color: rgb(205, 243, 255);
+}
+
+.break {
+  background-color: rgb(250, 255, 205);
+}
+
+.work.active,
+.break.active {
+  width: 100%;
+}
+
+.work.inactive,
+.break.inactive {
+  width: 0%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.text {
+  margin: 10px;
+}
+
+.activeTitle {
+  font-size: 60px;
+  position: relative;
+  top: -100px;
+  transition: all 0.5s ease;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(14, 114, 131, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.timer {
+  font-size: 60px;
+  position: relative;
+  top: -50px;
+  transition: all 0.5s ease;
+}
+
+.volume-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.volume-wrapper:hover .slider {
+  display: block;
+}
+
+.volume {
+  width: 30px;
+}
+
+.slider {
+  display: none;
+}
