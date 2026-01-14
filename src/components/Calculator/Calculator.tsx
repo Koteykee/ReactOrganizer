@@ -197,32 +197,83 @@ export const Calculator = () => {
         <div className={styles["empty-slot"]}></div>
         <div className={styles["empty-slot"]}></div>
         <div className={styles["empty-slot"]}></div>
-        <button onClick={backspace}>⌫</button>
+        <button onClick={backspace} className={styles["button"]}>
+          ⌫
+        </button>
 
-        <button onClick={() => applyFunction("inv")}>1/x</button>
-        <button onClick={() => applyFunction("square")}>x²</button>
-        <button onClick={() => applyFunction("sqrt")}>√x</button>
-        <button onClick={() => append("÷")}>÷</button>
+        <button
+          onClick={() => applyFunction("inv")}
+          className={styles["button"]}
+        >
+          1/x
+        </button>
+        <button
+          onClick={() => applyFunction("square")}
+          className={styles["button"]}
+        >
+          x²
+        </button>
+        <button
+          onClick={() => applyFunction("sqrt")}
+          className={styles["button"]}
+        >
+          √x
+        </button>
+        <button onClick={() => append("÷")} className={styles["button"]}>
+          ÷
+        </button>
 
-        <button onClick={() => append("7")}>7</button>
-        <button onClick={() => append("8")}>8</button>
-        <button onClick={() => append("9")}>9</button>
-        <button onClick={() => append("x")}>x</button>
+        <button onClick={() => append("7")} className={styles["button"]}>
+          7
+        </button>
+        <button onClick={() => append("8")} className={styles["button"]}>
+          8
+        </button>
+        <button onClick={() => append("9")} className={styles["button"]}>
+          9
+        </button>
+        <button onClick={() => append("x")} className={styles["button"]}>
+          x
+        </button>
 
-        <button onClick={() => append("4")}>4</button>
-        <button onClick={() => append("5")}>5</button>
-        <button onClick={() => append("6")}>6</button>
-        <button onClick={() => append("-")}>-</button>
+        <button onClick={() => append("4")} className={styles["button"]}>
+          4
+        </button>
+        <button onClick={() => append("5")} className={styles["button"]}>
+          5
+        </button>
+        <button onClick={() => append("6")} className={styles["button"]}>
+          6
+        </button>
+        <button onClick={() => append("-")} className={styles["button"]}>
+          -
+        </button>
 
-        <button onClick={() => append("1")}>1</button>
-        <button onClick={() => append("2")}>2</button>
-        <button onClick={() => append("3")}>3</button>
-        <button onClick={() => append("+")}>+</button>
+        <button onClick={() => append("1")} className={styles["button"]}>
+          1
+        </button>
+        <button onClick={() => append("2")} className={styles["button"]}>
+          2
+        </button>
+        <button onClick={() => append("3")} className={styles["button"]}>
+          3
+        </button>
+        <button onClick={() => append("+")} className={styles["button"]}>
+          +
+        </button>
 
-        <button onClick={clear}>C</button>
-        <button onClick={() => append("0")}>0</button>
-        <button onClick={() => append(".")}>.</button>
-        <button onClick={calculate}>=</button>
+        <button onClick={clear} className={styles["button"]}>
+          C
+        </button>
+        <button onClick={() => append("0")} className={styles["button"]}>
+          0
+        </button>
+        <button onClick={() => append(".")} className={styles["button"]}>
+          .
+        </button>
+        <button onClick={calculate} className={styles["button"]}>
+          =
+        </button>
       </div>
     </div>
   );

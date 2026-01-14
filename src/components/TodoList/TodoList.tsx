@@ -76,7 +76,7 @@ export const TodoList = () => {
 
   return (
     <div className={styles["todo-container"]}>
-      <h2>Todo List</h2>
+      <h2 className={styles["title"]}>Todo List</h2>
       <div className={styles["todo-field"]}>
         <input
           type="text"
@@ -85,11 +85,13 @@ export const TodoList = () => {
           maxLength={50}
           className={styles["input"]}
         />
-        <button onClick={addTask}>Add Task</button>
+        <button onClick={addTask} className={styles["button"]}>
+          Add Task
+        </button>
       </div>
       <ul>
         {filteredList.map((taskItem) => (
-          <li key={taskItem.id}>
+          <li key={taskItem.id} className={styles["li"]}>
             <div className={styles["text-container"]}>
               <img src={circleIcon} alt="*" />
               <input
@@ -110,7 +112,10 @@ export const TodoList = () => {
                 {taskItem.content}
               </p>
             </div>
-            <button onClick={() => deleteTask(taskItem.id)}>
+            <button
+              onClick={() => deleteTask(taskItem.id)}
+              className={styles["button"]}
+            >
               <img src={deleteIcon} alt="Delete" />
             </button>
           </li>
@@ -126,12 +131,18 @@ export const TodoList = () => {
       {taskList.length > 0 && (
         <div className={styles["btns"]}>
           {(activeBtn === "all" || activeBtn === "active") && (
-            <button onClick={showCompleted}>Show completed tasks</button>
+            <button onClick={showCompleted} className={styles["button"]}>
+              Show completed tasks
+            </button>
           )}
           {activeBtn === "completed" && (
-            <button onClick={showActive}>Show active tasks</button>
+            <button onClick={showActive} className={styles["button"]}>
+              Show active tasks
+            </button>
           )}
-          <button onClick={showAll}>Show all tasks</button>
+          <button onClick={showAll} className={styles["button"]}>
+            Show all tasks
+          </button>
         </div>
       )}
     </div>

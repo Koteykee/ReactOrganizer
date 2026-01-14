@@ -41,8 +41,11 @@
   gap: 10px;
 }
 
-button {
-  padding: 20px;
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
   font-size: 24px;
   border: none;
   border-radius: 8px;
@@ -56,10 +59,10 @@ button {
   pointer-events: none;
 }
 
-button:hover {
+.button:hover {
   background-color: #bfe0d4;
 }
 
-button:active {
+.button:active {
   background-color: #a8d1c1;
 }

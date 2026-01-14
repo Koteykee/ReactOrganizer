@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-header {
+.header {
   background-color: rgb(144, 202, 178);
   padding: 16px 40px;
   display: flex;
@@ -30,7 +30,7 @@ header {
 }
 
 @media (max-width: 1000px) {
-  header {
+  .header {
     position: relative;
     z-index: 100;
   }

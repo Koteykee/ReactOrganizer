@@ -23,6 +23,7 @@
   list-style: none;
   font-size: 24px;
   cursor: pointer;
+  margin: 2px;
 }
 
 .error {

@@ -15,7 +15,7 @@ export const Header = () => {
 
   return (
     <div>
-      <header>
+      <header className={styles["header"]}>
         <img
           src={menuIcon}
           alt="Menu"

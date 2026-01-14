@@ -17,7 +17,7 @@
   gap: 10px;
 }
 
-li {
+.li {
   margin: 10px;
   display: flex;
   align-items: center;
@@ -38,11 +38,11 @@ li {
   border-radius: 6px;
 }
 
-h2 {
+.title {
   margin: 20px;
 }
 
-button {
+.button {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -54,12 +54,12 @@ button {
   color: white;
 }
 
-button:hover {
+.button:hover {
   background-color: #e49561;
   transform: scale(1.05);
 }
 
-button:active {
+.button:active {
   transform: scale(0.98);
   background-color: rgb(14, 113, 131);
 }
