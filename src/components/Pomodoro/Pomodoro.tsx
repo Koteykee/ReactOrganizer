@@ -1,26 +1,26 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import volumeIcon from "../../assets/icons/volume.svg";
 import styles from "./Pomodoro.module.css";
+import { Slider } from "@mui/material";
 
 export const Pomodoro = () => {
-  const [workTimer, setWorkTimer] = useState(20);
-  const [breakTimer, setBreakTimer] = useState(5);
-  const [activeTimer, setActiveTimer] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(0);
-  const [volume, setVolume] = useState(30);
-  const [alarm, setAlarm] = useState(null);
+  const [workTimer, setWorkTimer] = useState<number>(20);
+  const [breakTimer, setBreakTimer] = useState<number>(5);
+  const [activeTimer, setActiveTimer] = useState<"work" | "break" | null>(null);
+  const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [volume, setVolume] = useState<number>(30);
 
-  const focusTimer = (active) => {
+  const alarmRef = useRef<HTMLAudioElement | null>(null);
+
+  const focusTimer = (active: "work" | "break") => {
     if (activeTimer === active) {
-      stopTimer();
       setActiveTimer(null);
+      setTimeLeft(0);
       return;
     }
-    if (activeTimer === null) {
-      setActiveTimer(active);
-      activeTimer === "work" ? timer(workTimer) : timer(breakTimer);
-    }
+    setTimeLeft((active === "work" ? workTimer : breakTimer) * 60);
+    setActiveTimer(active);
   };
 
   const workTimerInc = () => {
@@ -41,54 +41,45 @@ export const Pomodoro = () => {
     setBreakTimer((prev) => prev - 1);
   };
 
-  let timerInterval = null;
-
-  const timer = (time) => {
-    setTimeLeft(time * 60);
-
-    if (timerInterval) clearInterval(timerInterval);
-
-    timerInterval = setInterval(() => {
-      if (timeLeft > 0) {
-        setTimeLeft((prev) => prev - 1);
-      } else {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        playAudio();
-        if (activeTimer === "work") {
-          setActiveTimer("break");
-          timer(breakTimer);
-        } else {
-          setActiveTimer("work");
-          timer(workTimer);
-        }
-      }
-    }, 1000);
-  };
-
-  const stopTimer = () => {
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-    }
-  };
-
-  const formattedTime = computed(() => {
+  const formattedTime = () => {
     const min = Math.floor(timeLeft / 60)
       .toString()
       .padStart(2, "0");
     const sec = (timeLeft % 60).toString().padStart(2, "0");
     return `${min}:${sec}`;
-  });
+  };
 
   const playAudio = () => {
-    if (alarm) {
-      alarm.volume = volume / 100;
-      alarm
+    if (alarmRef.current) {
+      alarmRef.current.volume = volume / 100;
+      alarmRef.current
         .play()
         .catch((error) => console.error("Ошибка воспроизведения:", error));
     }
   };
+
+  useEffect(() => {
+    if (!activeTimer) return;
+
+    if (timeLeft === 0) {
+      const switchTimeout = setTimeout(() => {
+        const nextMode = activeTimer === "work" ? "break" : "work";
+        const nextTime = nextMode === "work" ? workTimer : breakTimer;
+
+        setActiveTimer(nextMode);
+        setTimeLeft(nextTime * 60);
+        playAudio();
+      }, 0);
+
+      return () => clearTimeout(switchTimeout);
+    }
+
+    const timeout = setTimeout(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [timeLeft, activeTimer, workTimer, breakTimer]);
 
   return (
     <div className={styles["container"]}>
@@ -99,19 +90,21 @@ export const Pomodoro = () => {
             e.stopPropagation();
           }}
         >
-          {/* <Slider
-          v-model.number="volume"
-          :min="0"
-          :max="100"
-          :tooltips="false"
-          orientation="vertical"
-          direction="rtl"
-          class="slider"
-        /> */}
+          <div className={styles["slider"]}>
+            <Slider
+              value={volume}
+              onChange={(_, newValue) => setVolume(newValue)}
+              min={0}
+              max={100}
+              step={1}
+              orientation="vertical"
+              sx={{ color: "#10b981", height: 150 }}
+            />
+          </div>
           <img src={volumeIcon} alt="Volume" className={styles["volume"]} />
         </div>
         <div
-          onMouseDown={focusTimer("work")}
+          onClick={() => focusTimer("work")}
           className={`${styles["work"]} ${
             activeTimer === "work" ? styles["active"] : ""
           } ${activeTimer === "break" ? styles["inactive"] : ""}`}
@@ -135,7 +128,7 @@ export const Pomodoro = () => {
             ⏶
           </button>
           <div className={`${activeTimer !== null ? styles["timer"] : ""}`}>
-            {activeTimer === "work" ? formattedTime : workTimer}
+            {activeTimer === "work" ? formattedTime() : workTimer}
           </div>
           <button
             onClick={(e) => {
@@ -150,7 +143,7 @@ export const Pomodoro = () => {
           </button>
         </div>
         <div
-          onClick={focusTimer("break")}
+          onClick={() => focusTimer("break")}
           className={`${styles["break"]} ${
             activeTimer === "break" ? styles["active"] : ""
           } ${activeTimer === "work" ? styles["inactive"] : ""}`}
@@ -174,7 +167,7 @@ export const Pomodoro = () => {
             ⏶
           </button>
           <div className={`${activeTimer !== null ? styles["timer"] : ""}`}>
-            {activeTimer === "break" ? formattedTime : breakTimer}
+            {activeTimer === "break" ? formattedTime() : breakTimer}
           </div>
           <button
             onClick={(e) => {
@@ -190,7 +183,7 @@ export const Pomodoro = () => {
         </div>
       </div>
       <audio
-        ref="alarm"
+        ref={alarmRef}
         className={styles["alarm"]}
         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3"
       ></audio>

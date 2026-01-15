@@ -2,21 +2,12 @@ import { useRef, useState, type ChangeEvent } from "react";
 
 import { getWeather } from "../../../api/api";
 import { WeatherData } from "../WeatherData/WeatherData";
+import type { SearchResults } from "../../../types/weather.type";
 import styles from "./WeatherSearch.module.css";
-
-type searchResults = {
-  id: number;
-  name: string;
-  region: string;
-  country: string;
-  lat: number;
-  lon: number;
-  url: string;
-};
 
 export const WeatherSearch = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<searchResults[] | null>(
+  const [searchResults, setSearchResults] = useState<SearchResults[] | null>(
     null
   );
   const [searchError, setSearchError] = useState<boolean>(false);

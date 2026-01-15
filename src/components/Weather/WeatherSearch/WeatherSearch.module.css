@@ -26,6 +26,10 @@
   margin: 2px;
 }
 
+.city:hover {
+  background-color: #10b981;
+}
+
 .error {
   font-size: 24px;
 }

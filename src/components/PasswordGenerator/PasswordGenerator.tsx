@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import styles from "./PasswordGenerator.module.css";
 import { Slider, Switch } from "@mui/material";
+import styles from "./PasswordGenerator.module.css";
 
 export const PasswordGenerator = () => {
   const [password, setPassword] = useState<string>("");

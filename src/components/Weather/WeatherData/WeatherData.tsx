@@ -1,49 +1,12 @@
 import { useEffect, useState } from "react";
 
 import { getCityWeather } from "../../../api/api";
+import type { CityWeatherData } from "../../../types/weather.type";
 import styles from "./WeatherData.module.css";
-
-type cityWeatherData = {
-  location: {
-    name: string;
-    localtime: string;
-  };
-
-  current: {
-    temp_c: number;
-    feelslike_c: number;
-    condition: {
-      text: string;
-      icon: string;
-    };
-  };
-
-  forecast: {
-    forecastday: Array<{
-      date: string;
-
-      day: {
-        maxtemp_c: number;
-        mintemp_c: number;
-        condition: {
-          icon: string;
-        };
-      };
-
-      hour: Array<{
-        time: string;
-        temp_c: number;
-        condition: {
-          icon: string;
-        };
-      }>;
-    }>;
-  };
-};
 
 export const WeatherData = (props: { city: string }) => {
   const { city } = props;
-  const [cityData, setCityData] = useState<cityWeatherData | null>(null);
+  const [cityData, setCityData] = useState<CityWeatherData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
