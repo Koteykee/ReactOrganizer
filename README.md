@@ -1,75 +1,23 @@
-# React + TypeScript + Vite
+# From this project, I learned how to build a multifunctional organizer application that includes:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. A Pomodoro timer with customizable work and break durations, the ability to start and stop sessions, automatic switching between work and break cycles, and audio notifications with adjustable volume.
+2. A To-Do List that allows users to add, remove, and filter tasks by status (all, active, completed), with all tasks and their completion states persisting in localStorage even after page reloads.
+3. A feature-rich calculator with basic and advanced operations, real-time expression editing, error handling, and a clean, interactive interface.
+4. A Password Generator capable of creating secure random passwords with customizable length and character sets, including uppercase letters, lowercase letters, numbers, and symbols, with one-click copy functionality.
+5. A Weather module that lets users search for cities, fetch detailed weather data from an external API, and view current conditions, hourly forecasts, and a 3-day outlook, with error handling, debounced search and asynchronous loading.
+6. I also learned how to implement responsive design by using CSS media queries, ensuring the interface adapts smoothly to different screen sizes.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+1. Clone the repo
+```sh
+git clone https://github.com/Koteykee/ReactOrg
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install NPM packages
+```sh
+npm install
 ```
+3. Run application
+```sh
+npm run dev
+```
+Done! 😄
