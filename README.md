@@ -10,7 +10,7 @@
 ## Installation
 1. Clone the repo
 ```sh
-git clone https://github.com/Koteykee/ReactOrg
+git clone https://github.com/Koteykee/ReactOrganizer.git
 ```
 2. Install NPM packages
 ```sh
